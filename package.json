@@ -1,0 +1,27 @@
+{
+  "name": "Welcome-Bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "eslint": "^5.15.2",
+    "ffmpeg-binaries": "^4.0.0",
+    "node-opus": "^0.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jiroscopes/Welcome-Bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jiroscopes/Welcome-Bot/issues"
+  },
+  "homepage": "https://github.com/Jiroscopes/Welcome-Bot#readme"
+}
