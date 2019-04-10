@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "discord.js": "^11.4.2",
+    "discord.js": "github:discordjs/discord.js",
     "eslint": "^5.15.2",
     "ffmpeg-binaries": "^4.0.0",
-    "node-opus": "^0.3.1",
     "opusscript": "0.0.6"
   },
   "devDependencies": {},

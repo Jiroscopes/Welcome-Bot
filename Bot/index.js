@@ -16,17 +16,17 @@ client.on('ready', () => {
 });
 
 // When a user joins a voice channel, the bot joins it as well.
-client.on('voiceStateUpdate', (oldMember, newMember) => {
+client.on('voiceStateUpdate', (oldState, newState) => {
     if (status){
-        console.log("Old: " + oldMember.voiceChannel); 
-        console.log("New: " + newMember.voiceChannel); 
-        oldChannel = oldMember.voiceChannel;// Old voice channel; Undefined if not in one.
-        newChannel = newMember.voiceChannel;// New voice channel; undefined if not joining another.
+        console.log("Old: " + oldState.channel); 
+        console.log("New: " + newState.channel); 
+        oldChannel = oldState.channel;// Old voice channel; Undefined if not in one.
+        newChannel = newState.channel;// New voice channel; undefined if not joining another.
+        
         if (newChannel) {
-            isReady = false;
             newChannel.join().then(connection =>{
                 console.log("Connected!")
-                const dispatcher = connection.playFile('./mynamejeff.mp3');
+                const dispatcher = connection.play('./mynamejeff.mp3');
                 dispatcher.setVolume(0.5);
                 // dispatcher.on('end', end => newChannel.leave());
                 console.log(dispatcher.time)
