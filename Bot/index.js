@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 const Discord = require('discord.js');
-// const Opus = require('node-opus');
 const { prefix, token } = require('./config.json'); 
 const client = new Discord.Client()
 
