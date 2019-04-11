@@ -1,35 +1,37 @@
 /* eslint-disable no-console */
-const Discord = require('discord.js')
+const Discord = require('discord.js');
+// const Opus = require('node-opus');
 const { prefix, token } = require('./config.json'); 
 const client = new Discord.Client()
 
 let status = true;
 let exclude = [];
 
+
 client.on('ready', () => {
-    var isReady = true;
-    channels = client.channels.find(channels => channels.name === 'general'); // find the name of the 'general' text channel
+    var channels = client.channels.find(channels => channels.name === 'general'); // find the name of the 'general' text channel
     console.log("I'm Ready");
     //console.log(client.user); // bots info
 
     // channels.send("I'm ready! (testing)"); // output a message saying the bot is ready for action!
 });
 
+
 // When a user joins a voice channel, the bot joins it as well.
 client.on('voiceStateUpdate', (oldState, newState) => {
     if (status){
         console.log("Old: " + oldState.channel); 
         console.log("New: " + newState.channel); 
-        oldChannel = oldState.channel;// Old voice channel; Undefined if not in one.
-        newChannel = newState.channel;// New voice channel; undefined if not joining another.
-        
+        var oldChannel = oldState.channel;// Old voice channel; Undefined if not in one.
+        var newChannel = newState.channel;// New voice channel; undefined if not joining another.
+        var member = oldState.member;
+        console.log(member.user.bot);
         if (newChannel) {
             newChannel.join().then(connection =>{
-                console.log("Connected!")
-                const dispatcher = connection.play('./mynamejeff.mp3');
-                dispatcher.setVolume(0.5);
-                // dispatcher.on('end', end => newChannel.leave());
-                console.log(dispatcher.time)
+                console.log("Connected!");
+                if (!member.user.bot){
+                    const dispatcher = connection.play('./mynamejeff.mp3');
+                }
             }).catch(console.error);
             
         } else if (oldChannel) {
@@ -37,6 +39,7 @@ client.on('voiceStateUpdate', (oldState, newState) => {
         }
     } // end status
 }); // end voiceStatusUpdate 
+
 
 // This is a leave server command
 client.on('message', message => {
@@ -49,6 +52,7 @@ client.on('message', message => {
         message.channel.send(avatar);
     }
 });
+
 
 // Make the bot start / stop joining the channel.
 client.on('message', message => {
@@ -63,9 +67,10 @@ client.on('message', message => {
     }
 })
 
+
 //exclude / include users in the fun!
 client.on('message', message => {
-    user = message.member.id;
+    let user = message.member.id;
     if (message.content.toLowerCase() === `${prefix}exclude`) {
         if (exclude.length == 0){ 
             exclude.push(user);
@@ -79,14 +84,15 @@ client.on('message', message => {
         }
         console.log(exclude);
     } else if (message.content.toLowerCase() === `${prefix}include`){
-        for (var i = 0; i < exclude.length; i++){
-            if (exclude[i] === user){
-                exclude.splice(i, 1);
+        for (var x = 0; x < exclude.length; x++){
+            if (exclude[x] === user){
+                exclude.splice(x, 1);
             }
         }
         console.log(exclude);
     }
 });
+
 
 // Help command!
 client.on('message', message => {
@@ -128,4 +134,4 @@ client.on('message', message => {
 })
 
 
-  client.login(token); // Login to the server
+client.login(token); // Login to the server
