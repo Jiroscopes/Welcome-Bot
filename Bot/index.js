@@ -29,7 +29,7 @@ client.on('voiceStateUpdate', (oldState, newState) => {
             newChannel.join().then(connection =>{
                 console.log("Connected!");
                 if (!member.user.bot){
-                    const dispatcher = connection.play('./mynamejeff.mp3');
+                    const dispatcher = connection.play('./clips/mynamejeff.mp3');
                 }
             }).catch(console.error);
             
